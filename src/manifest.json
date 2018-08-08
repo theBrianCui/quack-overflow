@@ -1,0 +1,32 @@
+{
+    "manifest_version": 2,
+    "name": "Quack Overflow",
+    "version": "1.0",
+    "description": "Quack is back.",
+    "homepage_url": "https://github.com/theBrianCui/quack-overflow",
+    "icons": {
+        "16": "static/icons/duck-16.png",
+        "32": "static/icons/duck-32.png",
+        "48": "static/icons/duck-48.png",
+        "96": "static/icons/duck-96.png"
+    },
+    "permissions": [
+        "activeTab",
+        "storage"
+    ],
+    "browser_action": {
+        "default_icon": {
+            "16": "static/icons/duck-16.png",
+            "32": "static/icons/duck-32.png",
+            "48": "static/icons/duck-48.png",
+            "96": "static/icons/duck-96.png"
+        },
+        "default_title": "Quack Overflow"
+    },
+    "background": {
+        "scripts": ["background.js"]
+    },
+    "web_accessible_resources": [
+        "content/*"
+    ]
+}

@@ -27,6 +27,7 @@
         "scripts": ["background.js"]
     },
     "web_accessible_resources": [
-        "content/*"
+        "content/*",
+        "static/*"
     ]
 }

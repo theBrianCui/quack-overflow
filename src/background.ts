@@ -7,9 +7,13 @@ browser.browserAction.onClicked.addListener(async (tab) => {
         currentWindow: true,
     });
 
+    await browser.tabs.insertCSS({
+        file: browser.extension.getURL("content/content.css"),
+    });
     await browser.tabs.executeScript({
         file: browser.extension.getURL("content/content.js"),
     });
+
     browser.tabs.sendMessage(tabs[0].id, {
         action: "browserActionClicked"
     });

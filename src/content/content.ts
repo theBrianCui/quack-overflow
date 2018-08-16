@@ -8,7 +8,10 @@ import { browser } from "webextension-polyfill-ts";
 
     browser.runtime.onMessage.addListener((message: any) => {
         if (message.action === "browserActionClicked") {
-            document.body.innerHTML = "Heyoooo";
+            var textDuck = document.createElement("div");
+            textDuck.textContent = "Quack!";
+            textDuck.className = "duck";
+            document.body.appendChild(textDuck);
         }
     });
 

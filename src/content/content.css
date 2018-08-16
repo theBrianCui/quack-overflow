@@ -2,3 +2,9 @@
     font-weight: bold;
     color: red;
 }
+
+.svgDuck svg {
+    width: 56px;
+    height: 49px;
+    cursor: pointer;
+}

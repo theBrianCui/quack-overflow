@@ -2,16 +2,18 @@
     opacity: 1;
     z-index: 1;
     box-shadow: 0 2px 8px #e4e6e8;
-    background-color: white;
+    background-color: #fff;
     border-color: #e4e6e8;
     border-radius: 5px;
     border-style: solid;
     border-width: 1px;
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size: 13px;
 
     position: fixed;
     right: 32px;
     bottom: calc(32px + 16px + 49px);
-    color: black;
+    color: #242729;
     padding: 12px;
 }
 

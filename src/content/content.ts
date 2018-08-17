@@ -12,6 +12,7 @@ import { browser } from "webextension-polyfill-ts";
 
             let svgDuck = document.createElement("div");
             svgDuck.className = "svgDuck";
+            svgDuck.style.bottom = "-100px";
             svgDuck.innerHTML = `
             <svg xmlns="http://www.w3.org/2000/svg">
                 <g fill="none">
@@ -24,21 +25,24 @@ import { browser } from "webextension-polyfill-ts";
 
             document.body.appendChild(svgDuck);
 
-            svgDuck.addEventListener("click", () => {
-                if (document.querySelectorAll(".popup").length > 0) {
-                    return;
-                }
-
-                let popup = document.createElement("div");
-                popup.className = "popup";
-                popup.textContent = "Quack!";
-
-                let arrow = document.createElement("div");
-                arrow.className = "arrow";
-
-                popup.appendChild(arrow);
-                document.body.appendChild(popup);
-            });
+            setTimeout(() => {
+                svgDuck.style.bottom = "32px";
+                svgDuck.addEventListener("click", () => {
+                    if (document.querySelectorAll(".popup").length > 0) {
+                        return;
+                    }
+    
+                    let popup = document.createElement("div");
+                    popup.className = "popup";
+                    popup.textContent = "Quack!";
+                    document.body.appendChild(popup);
+    
+                    let arrow = document.createElement("div");
+                    arrow.className = "arrow";
+    
+                    popup.appendChild(arrow);
+                });
+            }, 4);
         }
     });
 

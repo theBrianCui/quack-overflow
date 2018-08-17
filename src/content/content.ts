@@ -7,11 +7,8 @@ import { browser } from "webextension-polyfill-ts";
     (window as any).hasRun = true;
 
     browser.runtime.onMessage.addListener((message: any) => {
-        if (message.action === "browserActionClicked") {
-            let textDuck = document.createElement("div");
-            textDuck.textContent = "Quack!";
-            textDuck.className = "duck";
-            document.body.appendChild(textDuck);
+        if (message.action === "browserActionClicked"
+            && document.querySelectorAll(".svgDuck").length === 0) {
 
             let svgDuck = document.createElement("div");
             svgDuck.className = "svgDuck";

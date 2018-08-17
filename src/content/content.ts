@@ -23,6 +23,17 @@ import { browser } from "webextension-polyfill-ts";
             </svg>`;
 
             document.body.appendChild(svgDuck);
+
+            svgDuck.addEventListener("click", () => {
+                if (document.querySelectorAll(".popup").length > 0) {
+                    return;
+                }
+
+                let popup = document.createElement("div");
+                popup.className = "popup";
+                popup.textContent = "Quack!";
+                document.body.appendChild(popup);
+            });
         }
     });
 

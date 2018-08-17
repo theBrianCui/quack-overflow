@@ -1,13 +1,16 @@
-.duck {
-    font-weight: bold;
+.popup {
+    position: fixed;
+    right: 32px;
+    bottom: calc(32px + 16px + 49px);
     color: red;
+    border: 4px solid black;
 }
 
 .svgDuck svg {
     width: 56px;
     height: 49px;
     position: fixed;
-    bottom: 2em;
-    right: 2em;
+    bottom: 32px;
+    right: 32px;
     cursor: pointer;
 }

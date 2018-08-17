@@ -32,6 +32,11 @@ import { browser } from "webextension-polyfill-ts";
                 let popup = document.createElement("div");
                 popup.className = "popup";
                 popup.textContent = "Quack!";
+
+                let arrow = document.createElement("div");
+                arrow.className = "arrow";
+
+                popup.appendChild(arrow);
                 document.body.appendChild(popup);
             });
         }

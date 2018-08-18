@@ -6,6 +6,7 @@
   "scripts": {
     "build": "node build.js",
     "clean": "rm -rf .rpt2_cache/ build/",
+    "watch": "nodemon --verbose -e js,ts,json --watch src/ --exec npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

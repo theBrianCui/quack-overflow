@@ -63,13 +63,13 @@
     color: #6a737c;
     font-size: 13px;
     font-family: Arial, Helvetica, sans-serif;
-    line-height: 1.2rem;
+    line-height: 1.15rem;
 }
 
 .quack-overflow-popup div.contentWrapper {
     width: 17rem;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
+    padding-top: 1.9rem;
+    padding-bottom: 1.9rem;
 }
 
 .quack-overflow-popup div.smallTextWrapper {

@@ -1,4 +1,4 @@
-.popup {
+.quack-overflow-popup {
     opacity: 1;
     z-index: 1;
     box-shadow: 0 2px 8px #e4e6e8;
@@ -15,10 +15,9 @@
     right: 32px;
     bottom: calc(32px + 16px + 49px);
     color: #242729;
-    padding: 12px;
 }
 
-.popup .arrow {
+.quack-overflow-popup .arrow {
     bottom: -8px;
     display: block;
     height: 8px;
@@ -27,7 +26,7 @@
     width: 16px;
 }
 
-.popup .arrow::before {
+.quack-overflow-popup .arrow::before {
     border-color: transparent;
     border-style: solid;
     border-top-color: #D9D9DC;
@@ -38,7 +37,7 @@
     position: absolute;
 }
 
-.popup .arrow::after {
+.quack-overflow-popup .arrow::after {
     border-color: transparent;
     border-style: solid;
     border-top-color: #fff;
@@ -49,14 +48,41 @@
     position: absolute;
 }
 
-.svgDuck {
+.quack-overflow-popup h2 {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.3em;
+    margin: 0 0 1em;
+    margin-bottom: 12px;
+    text-align: center;
+    color: #242729;
+}
+
+.quack-overflow-popup p {
+    text-align: center;
+    color: #6a737c;
+    font-size: 13px;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 16.5px;
+}
+
+.quack-overflow-popup div.contentWrapper {
+    width: 222px;
+    padding: 24px;
+}
+
+.quack-overflow-popup div.smallTextWrapper {
+    padding: 12px;
+}
+
+.quack-overflow-svgDuck {
     position: fixed;
     /* bottom: 32px; */
     right: 32px;
     transition: bottom .2s ease;
 }
 
-.svgDuck svg {
+.quack-overflow-svgDuck svg {
     width: 56px;
     height: 49px;
     cursor: pointer;

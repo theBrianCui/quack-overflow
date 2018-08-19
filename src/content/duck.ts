@@ -3,7 +3,7 @@ import once from "./once";
 const popup = {
     node: (() => {
         const popup = document.createElement("div");
-        popup.className = "popup";
+        popup.className = "quack-overflow-popup";
     
         let arrow = document.createElement("div");
         arrow.className = "arrow";
@@ -25,9 +25,25 @@ const popup = {
 }
 
 const renderCanIHelp: () => HTMLElement = once(() => {
-    const canIHelp = document.createElement("span");
+    const canIHelp = document.createElement("div");
+    canIHelp.className = "smallTextWrapper";
     canIHelp.textContent = "Can I help?";
     return canIHelp;
+});
+
+const renderAskTheDuck: () => HTMLElement = once(() => {
+    const wrapper = document.createElement("div");
+    wrapper.className = "contentWrapper";
+
+    const header = document.createElement("h2");
+    header.textContent = "Ask the duck!";
+
+    const body = document.createElement("p");
+    body.innerHTML = "You'll need to explain your problem.<br>Do you have a microphone?";
+
+    wrapper.appendChild(header);
+    wrapper.appendChild(body);
+    return wrapper;
 });
 
 const renderQuack: () => HTMLElement = once(() => {
@@ -42,7 +58,7 @@ export default function showDuck(): HTMLElement {
     }
 
     let svgDuck = document.createElement("div");
-    svgDuck.className = "svgDuck";
+    svgDuck.className = "quack-overflow-svgDuck";
     svgDuck.style.bottom = "-100px";
     svgDuck.innerHTML = `
     <svg xmlns="http://www.w3.org/2000/svg">
@@ -63,7 +79,7 @@ export default function showDuck(): HTMLElement {
                 document.body.appendChild(popup.node);
             }
 
-            popup.set(renderQuack());
+            popup.set(renderAskTheDuck());
         });
     }, 4);
 
@@ -75,7 +91,7 @@ export default function showDuck(): HTMLElement {
         if (!popup.hasContent()) {
             popup.set(renderCanIHelp());
         }
-    }, 1000);
+    }, 2000);
 
     return svgDuck;
 }

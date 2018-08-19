@@ -11,9 +11,6 @@ import showDuck from "./duck";
         if (message.action === "browserActionClicked") {
             showDuck();
         }
-
-        // dummy resolve to keep Chrome from writing errors to the console
-        return Promise.resolve();
     });
 
 })();

@@ -45,11 +45,11 @@ const renderAskTheDuck: () => HTMLElement = once(() => {
     buttonWrapper.className = "buttonWrapper";
 
     const yesButton = document.createElement("button");
-    yesButton.className = "yesButton";
+    yesButton.classList.add("yesButton", "blueButton");
     yesButton.textContent = "Yes";
 
     const noButton = document.createElement("button");
-    noButton.className = "noButton";
+    noButton.classList.add("noButton", "clearButton");
     noButton.textContent = "No";
 
     buttonWrapper.appendChild(yesButton);

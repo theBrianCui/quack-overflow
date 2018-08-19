@@ -63,7 +63,7 @@
     color: #6a737c;
     font-size: 13px;
     font-family: Arial, Helvetica, sans-serif;
-    line-height: 1.15rem;
+    line-height: 1.1rem;
 }
 
 .quack-overflow-popup div.contentWrapper {
@@ -78,6 +78,34 @@
 
 .quack-overflow-popup div.buttonWrapper {
     text-align: center;
+}
+
+.quack-overflow-popup button {
+    font-size: 13px;
+    cursor: pointer;
+    padding: 0.45rem .8rem;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    outline: none;
+}
+
+.quack-overflow-popup button.blueButton {
+    border-color: #07c;
+    box-shadow: inset 0 1px 0 0 rgba(102,191,255,0.75),0 0 0 0 rgba(0,149,255,0);
+    background-color: #0095ff;
+    color: #fff;
+}
+
+.quack-overflow-popup button.clearButton {
+    color: #07c;
+    box-shadow: 0 0 0 0;
+    background-color: transparent;
+    border: 0px;
+}
+
+.quack-overflow-popup button.clearButton:hover {
+    color: #005999;
+    background-color: rgba(0,119,204,0.05);
 }
 
 .quack-overflow-popup button.yesButton {

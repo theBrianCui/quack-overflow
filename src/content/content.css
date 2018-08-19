@@ -68,8 +68,8 @@
 
 .quack-overflow-popup div.contentWrapper {
     width: 17rem;
-    padding-top: 1.9rem;
-    padding-bottom: 1.9rem;
+    padding-top: 1.75rem;
+    padding-bottom: 1.75rem;
 }
 
 .quack-overflow-popup div.smallTextWrapper {
@@ -101,6 +101,7 @@
     box-shadow: 0 0 0 0;
     background-color: transparent;
     border: 0px;
+    border-color: transparent;
 }
 
 .quack-overflow-popup button.clearButton:hover {
@@ -110,6 +111,7 @@
 
 .quack-overflow-popup button.yesButton {
     display: inline-block;
+    margin-right: .75rem;
 }
 
 .quack-overflow-popup button.noButton {

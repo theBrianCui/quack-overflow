@@ -1,11 +1,12 @@
 import once from "./once";
+import { createNode, appendTo } from "./domHelpers";
 
 const popup = {
     node: (() => {
-        const popup = document.createElement("div");
+        const popup = createNode("div");
         popup.className = "quack-overflow-popup";
     
-        let arrow = document.createElement("div");
+        let arrow = createNode("div");
         arrow.className = "arrow";
     
         popup.appendChild(arrow);
@@ -25,44 +26,40 @@ const popup = {
 }
 
 const renderCanIHelp: () => HTMLElement = once(() => {
-    const canIHelp = document.createElement("div");
+    const canIHelp = createNode("div");
     canIHelp.className = "smallTextWrapper";
     canIHelp.textContent = "Can I help?";
     return canIHelp;
 });
 
 const renderAskTheDuck: () => HTMLElement = once(() => {
-    const wrapper = document.createElement("div");
+    const wrapper = createNode("div");
     wrapper.className = "contentWrapper";
 
-    const header = document.createElement("h2");
+    const header = createNode("h2");
     header.textContent = "Ask the duck!";
 
-    const body = document.createElement("p");
+    const body = createNode("p");
     body.innerHTML = "You'll need to explain your problem.<br>Do you have a microphone?";
 
-    const buttonWrapper = document.createElement("div");
+    const buttonWrapper = createNode("div");
     buttonWrapper.className = "buttonWrapper";
 
-    const yesButton = document.createElement("button");
+    const yesButton = createNode("button");
     yesButton.classList.add("yesButton", "blueButton");
     yesButton.textContent = "Yes";
 
-    const noButton = document.createElement("button");
+    const noButton = createNode("button");
     noButton.classList.add("noButton", "clearButton");
     noButton.textContent = "No";
 
-    buttonWrapper.appendChild(yesButton);
-    buttonWrapper.appendChild(noButton);
-
-    wrapper.appendChild(header);
-    wrapper.appendChild(body);
-    wrapper.appendChild(buttonWrapper);
+    appendTo(buttonWrapper, yesButton, noButton);
+    appendTo(wrapper, header, body, buttonWrapper);
     return wrapper;
 });
 
 const renderQuack: () => HTMLElement = once(() => {
-    const quack = document.createElement("span");
+    const quack = createNode("span");
     quack.textContent = "Quack!";
     return quack;
 })
@@ -72,7 +69,7 @@ export default function showDuck(): HTMLElement {
         return;
     }
 
-    let svgDuck = document.createElement("div");
+    let svgDuck = createNode("div");
     svgDuck.className = "quack-overflow-svgDuck";
     svgDuck.style.bottom = "-100px";
     svgDuck.innerHTML = `

@@ -41,8 +41,23 @@ const renderAskTheDuck: () => HTMLElement = once(() => {
     const body = document.createElement("p");
     body.innerHTML = "You'll need to explain your problem.<br>Do you have a microphone?";
 
+    const buttonWrapper = document.createElement("div");
+    buttonWrapper.className = "buttonWrapper";
+
+    const yesButton = document.createElement("button");
+    yesButton.className = "yesButton";
+    yesButton.textContent = "Yes";
+
+    const noButton = document.createElement("button");
+    noButton.className = "noButton";
+    noButton.textContent = "No";
+
+    buttonWrapper.appendChild(yesButton);
+    buttonWrapper.appendChild(noButton);
+
     wrapper.appendChild(header);
     wrapper.appendChild(body);
+    wrapper.appendChild(buttonWrapper);
     return wrapper;
 });
 

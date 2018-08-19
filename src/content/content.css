@@ -76,6 +76,18 @@
     padding: 12px;
 }
 
+.quack-overflow-popup div.buttonWrapper {
+    text-align: center;
+}
+
+.quack-overflow-popup button.yesButton {
+    display: inline-block;
+}
+
+.quack-overflow-popup button.noButton {
+    display: inline-block;
+}
+
 .quack-overflow-svgDuck {
     position: fixed;
     /* bottom: 32px; */

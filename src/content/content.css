@@ -51,9 +51,9 @@
 .quack-overflow-popup h2 {
     font-weight: 400;
     font-size: 18px;
-    line-height: 1.3em;
-    margin: 0 0 1em;
-    margin-bottom: 12px;
+    line-height: 1.3rem;
+    margin: 0 0 1rem;
+    margin-bottom: 0.9rem;
     text-align: center;
     color: #242729;
 }
@@ -63,12 +63,13 @@
     color: #6a737c;
     font-size: 13px;
     font-family: Arial, Helvetica, sans-serif;
-    line-height: 16.5px;
+    line-height: 1.2rem;
 }
 
 .quack-overflow-popup div.contentWrapper {
-    width: 222px;
-    padding: 24px;
+    width: 17rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
 }
 
 .quack-overflow-popup div.smallTextWrapper {

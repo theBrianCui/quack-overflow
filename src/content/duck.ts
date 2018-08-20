@@ -58,6 +58,18 @@ const renderAskTheDuck: () => HTMLElement = once(() => {
     return wrapper;
 });
 
+const renderListening: () => HTMLElement = once(() => {
+    const wrapper = createNode("div");
+    wrapper.className = "contentWrapper";
+
+    const listening = createNode("p");
+    listening.textContent = "Quack Overflow is listening...";
+
+    const speak = createNode("p");
+    speak.textContent = ""
+    return wrapper;
+});
+
 const renderQuack: () => HTMLElement = once(() => {
     const quack = createNode("span");
     quack.textContent = "Quack!";
@@ -65,7 +77,7 @@ const renderQuack: () => HTMLElement = once(() => {
 })
 
 export default function showDuck(): HTMLElement {
-    if (document.querySelectorAll(".svgDuck").length > 0) {
+    if (document.querySelectorAll(".quack-overflow-svgDuck").length > 0) {
         return;
     }
 

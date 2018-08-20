@@ -17,6 +17,12 @@
     color: #242729;
 }
 
+.quack-overflow-popup * {
+    margin: initial;
+    padding: initial;
+    line-height: initial;
+}
+
 .quack-overflow-popup .arrow {
     bottom: -8px;
     display: block;
@@ -51,9 +57,9 @@
 .quack-overflow-popup h2 {
     font-weight: 400;
     font-size: 18px;
-    line-height: 1.3rem;
-    margin: 0 0 1rem;
-    margin-bottom: 0.9rem;
+    line-height: 18px;
+    margin: 0 0 14px;
+    margin-bottom: 13px;
     text-align: center;
     color: #242729;
 }
@@ -63,13 +69,14 @@
     color: #6a737c;
     font-size: 13px;
     font-family: Arial, Helvetica, sans-serif;
-    line-height: 1.1rem;
+    line-height: 16px;
+    margin-bottom: 14px;
 }
 
 .quack-overflow-popup div.contentWrapper {
-    width: 17rem;
-    padding-top: 1.75rem;
-    padding-bottom: 1.75rem;
+    width: 230px;
+    padding-top: 24px;
+    padding-bottom: 24px;
 }
 
 .quack-overflow-popup div.smallTextWrapper {
@@ -83,7 +90,7 @@
 .quack-overflow-popup button {
     font-size: 13px;
     cursor: pointer;
-    padding: 0.45rem .8rem;
+    padding: 7px 12px;
     border: 1px solid transparent;
     border-radius: 2px;
     outline: none;
@@ -111,7 +118,7 @@
 
 .quack-overflow-popup button.yesButton {
     display: inline-block;
-    margin-right: .75rem;
+    margin-right: 10px;
 }
 
 .quack-overflow-popup button.noButton {

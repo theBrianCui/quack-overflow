@@ -32,7 +32,7 @@ const renderCanIHelp: () => HTMLElement = once(() => {
     return canIHelp;
 });
 
-const renderAskTheDuck: () => HTMLElement = once(() => {
+const renderAskTheDuck = (yes: () => void, no: () => void): HTMLElement => {
     const wrapper = createNode("div");
     wrapper.className = "contentWrapper";
 
@@ -48,15 +48,17 @@ const renderAskTheDuck: () => HTMLElement = once(() => {
     const yesButton = createNode("button");
     yesButton.classList.add("yesButton", "blueButton");
     yesButton.textContent = "Yes";
+    yesButton.addEventListener("click", yes);
 
     const noButton = createNode("button");
     noButton.classList.add("noButton", "clearButton");
     noButton.textContent = "No";
+    noButton.addEventListener("click", no);
 
     appendTo(buttonWrapper, yesButton, noButton);
     appendTo(wrapper, header, body, buttonWrapper);
     return wrapper;
-});
+};
 
 const renderListening: () => HTMLElement = once(() => {
     const wrapper = createNode("div");
@@ -65,8 +67,7 @@ const renderListening: () => HTMLElement = once(() => {
     const listening = createNode("p");
     listening.textContent = "Quack Overflow is listening...";
 
-    const speak = createNode("p");
-    speak.textContent = ""
+    wrapper.appendChild(listening);
     return wrapper;
 });
 
@@ -103,7 +104,11 @@ export default function showDuck(): HTMLElement {
                 document.body.appendChild(popup.node);
             }
 
-            popup.set(renderAskTheDuck());
+            popup.set(renderAskTheDuck(() => {
+                popup.set(renderListening());
+            }, () => {
+                popup.set(renderListening());
+            }));
         });
     }, 4);
 

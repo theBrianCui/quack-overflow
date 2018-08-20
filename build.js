@@ -25,5 +25,5 @@ async function build(config) {
 }
 
 inputConfigs.forEach(config => build(config));
-cpx.copy(BASE_SRC_PATH + "**/*.{css,html,jpg,png,svg}", BASE_BUILD_PATH, { update: true });
+cpx.copy(BASE_SRC_PATH + "**/*.{css,html,jpg,png,svg,webm}", BASE_BUILD_PATH, { update: true });
 cpx.copy(BASE_SRC_PATH + "manifest.json", BASE_BUILD_PATH, { update: true });

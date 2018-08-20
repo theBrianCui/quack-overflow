@@ -1,5 +1,6 @@
 import once from "./once";
 import { createNode, appendTo } from "./domHelpers";
+import { browser } from "webextension-polyfill-ts";
 
 const popup = {
     node: (() => {
@@ -60,6 +61,14 @@ const renderAskTheDuck = (yes: () => void, no: () => void): HTMLElement => {
     return wrapper;
 };
 
+const waves = createNode("video");
+waves.setAttribute("muted", "muted");
+waves.setAttribute("autoPlay", "true");
+waves.setAttribute("loop", "true");
+waves.setAttribute("preload", "auto");
+waves.setAttribute("width", "230");
+waves.setAttribute("src", browser.extension.getURL("static/waves.webm"));
+
 const renderListening: () => HTMLElement = once(() => {
     const wrapper = createNode("div");
     wrapper.className = "contentWrapper";
@@ -68,6 +77,7 @@ const renderListening: () => HTMLElement = once(() => {
     listening.textContent = "Quack Overflow is listening...";
 
     wrapper.appendChild(listening);
+    wrapper.appendChild(waves);
     return wrapper;
 });
 

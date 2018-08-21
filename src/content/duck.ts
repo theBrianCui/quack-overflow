@@ -34,7 +34,7 @@ const renderCanIHelp: () => HTMLElement = once(() => {
     return canIHelp;
 });
 
-const renderAskTheDuck = (yes: () => void, no: () => void): HTMLElement => {
+const renderAskTheDuck = (yes: () => void, no: () => void, done: () => void): HTMLElement => {
     const wrapper = createNode("div");
     wrapper.className = "contentWrapper";
 
@@ -50,20 +50,20 @@ const renderAskTheDuck = (yes: () => void, no: () => void): HTMLElement => {
     const yesButton = createNode("button");
     yesButton.classList.add("yesButton", "blueButton");
     yesButton.textContent = "Yes";
-    yesButton.addEventListener("click", yes);
+    yesButton.addEventListener("click", () => { yes(); done(); });
 
     const noButton = createNode("button");
     noButton.classList.add("noButton", "clearButton");
     noButton.textContent = "No";
-    noButton.addEventListener("click", no);
+    noButton.addEventListener("click", () => { no(); done(); });
 
     appendTo(buttonWrapper, yesButton, noButton);
     appendTo(wrapper, header, body, buttonWrapper);
     return wrapper;
 };
 
-const renderListening = (() => {
-    const yesMic: HTMLElement = (() => {
+const renderListening: (microphone?: boolean) => HTMLElement = (() => {
+    const yesMic = () => {
         const wrapper = createNode("div");
         wrapper.className = "contentWrapper";
 
@@ -75,12 +75,12 @@ const renderListening = (() => {
 
         wrapper.appendChild(listening);
         wrapper.appendChild(mic);
-        wrapper.appendChild(waves);
+        wrapper.appendChild(waves());
         return wrapper;
-    })();
+    };
 
-    const noMic: HTMLElement = (() => {
-        const wrapper = createNode("div");
+    const noMic = () => {
+         const wrapper = createNode("div");
         wrapper.className = "contentWrapper";
 
         const listening = createNode("p");
@@ -92,12 +92,12 @@ const renderListening = (() => {
         Speak naturally.`;
 
         wrapper.appendChild(listening);
-        wrapper.appendChild(waves);
         wrapper.appendChild(mic);
+        wrapper.appendChild(waves());
         return wrapper;
-    })();
+    };
 
-    const unspecified: HTMLElement = (() => {
+    const unspecified = () => {
         const wrapper = createNode("div");
         wrapper.className = "contentWrapper";
 
@@ -105,17 +105,16 @@ const renderListening = (() => {
         listening.textContent = "Quack Overflow is listening...";
 
         wrapper.appendChild(listening);
-        wrapper.appendChild(waves);
+        wrapper.appendChild(waves());
         return wrapper;
-    })();
+    };
 
     return (microphone?: boolean) => {
-        waves.currentTime = 0.0;
         if (microphone === undefined) {
-            return unspecified;
+            return unspecified();
         }
 
-        return microphone ? yesMic : noMic;
+        return microphone ? yesMic() : noMic();
     }
 })();
 
@@ -144,20 +143,22 @@ export default function showDuck(): HTMLElement {
     </svg>`;
     
     document.body.appendChild(svgDuck);
+    const clickHandler = () => {
+        if (!popup.onPage()) {
+            document.body.appendChild(popup.node);
+        }
+
+        popup.set(renderAskTheDuck(
+            () => popup.set(renderListening(true)),
+            () => popup.set(renderListening(false)),
+            () => { }));
+
+        svgDuck.removeEventListener("click", clickHandler);
+    };
 
     setTimeout(() => {
         svgDuck.style.bottom = "32px";
-        svgDuck.addEventListener("click", () => {
-            if (!popup.onPage()) {
-                document.body.appendChild(popup.node);
-            }
-
-            popup.set(renderAskTheDuck(() => {
-                popup.set(renderListening());
-            }, () => {
-                popup.set(renderListening());
-            }));
-        });
+        svgDuck.addEventListener("click", clickHandler);
     }, 4);
 
     setTimeout(() => {

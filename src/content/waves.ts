@@ -11,10 +11,16 @@ function createVideo(): HTMLMediaElement {
     return video;
 }
 
-const waves = createVideo();
-waves.setAttribute("src", browser.extension.getURL("static/waves.webm"));
+const waves = () => {
+    const video = createVideo();
+    video.setAttribute("src", browser.extension.getURL("static/waves.webm"));
+    return video;
+}
 
-const wavesQuiet = createVideo();
-wavesQuiet.setAttribute("src", browser.extension.getURL("static/waves-quiet.webm"));
+const wavesQuiet = () => {
+    const video = createVideo();
+    video.setAttribute("src", browser.extension.getURL("static/waves-quiet.webm"));
+    return video;
+}
 
 export { waves, wavesQuiet };

@@ -1,6 +1,7 @@
 import once from "./once";
 import { createNode, appendTo } from "./domHelpers";
 import { browser } from "webextension-polyfill-ts";
+import { waves } from "./waves";
 
 const popup = {
     node: (() => {
@@ -61,25 +62,62 @@ const renderAskTheDuck = (yes: () => void, no: () => void): HTMLElement => {
     return wrapper;
 };
 
-const waves = createNode("video");
-waves.setAttribute("muted", "muted");
-waves.setAttribute("autoPlay", "true");
-waves.setAttribute("loop", "true");
-waves.setAttribute("preload", "auto");
-waves.setAttribute("width", "230");
-waves.setAttribute("src", browser.extension.getURL("static/waves.webm"));
+const renderListening = (() => {
+    const yesMic: HTMLElement = (() => {
+        const wrapper = createNode("div");
+        wrapper.className = "contentWrapper";
 
-const renderListening: () => HTMLElement = once(() => {
-    const wrapper = createNode("div");
-    wrapper.className = "contentWrapper";
+        const listening = createNode("p");
+        listening.textContent = "Quack Overflow is listening...";
 
-    const listening = createNode("p");
-    listening.textContent = "Quack Overflow is listening...";
+        const mic = createNode("p");
+        mic.textContent = "Explain your problem out loud. Speak naturally.";
 
-    wrapper.appendChild(listening);
-    wrapper.appendChild(waves);
-    return wrapper;
-});
+        wrapper.appendChild(listening);
+        wrapper.appendChild(mic);
+        wrapper.appendChild(waves);
+        return wrapper;
+    })();
+
+    const noMic: HTMLElement = (() => {
+        const wrapper = createNode("div");
+        wrapper.className = "contentWrapper";
+
+        const listening = createNode("p");
+        listening.textContent = "Quack Overflow is listening...";
+
+        const mic = createNode("p");
+        mic.innerHTML = `With the magic of the internet,<br>
+        you can just explain your problem anyway!<br />
+        Speak naturally.`;
+
+        wrapper.appendChild(listening);
+        wrapper.appendChild(waves);
+        wrapper.appendChild(mic);
+        return wrapper;
+    })();
+
+    const unspecified: HTMLElement = (() => {
+        const wrapper = createNode("div");
+        wrapper.className = "contentWrapper";
+
+        const listening = createNode("p");
+        listening.textContent = "Quack Overflow is listening...";
+
+        wrapper.appendChild(listening);
+        wrapper.appendChild(waves);
+        return wrapper;
+    })();
+
+    return (microphone?: boolean) => {
+        waves.currentTime = 0.0;
+        if (microphone === undefined) {
+            return unspecified;
+        }
+
+        return microphone ? yesMic : noMic;
+    }
+})();
 
 const renderQuack: () => HTMLElement = once(() => {
     const quack = createNode("span");

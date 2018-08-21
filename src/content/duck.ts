@@ -1,7 +1,7 @@
 import once from "./once";
 import { createNode, appendTo } from "./domHelpers";
 import { browser } from "webextension-polyfill-ts";
-import { waves } from "./waves";
+import { waves, wavesQuiet } from "./waves";
 
 const popup = {
     node: (() => {
@@ -80,7 +80,7 @@ const renderListening: (microphone?: boolean) => HTMLElement = (() => {
     };
 
     const noMic = () => {
-         const wrapper = createNode("div");
+        const wrapper = createNode("div");
         wrapper.className = "contentWrapper";
 
         const listening = createNode("p");
@@ -118,11 +118,23 @@ const renderListening: (microphone?: boolean) => HTMLElement = (() => {
     }
 })();
 
+const renderSpeakUp: () => HTMLElement = once(() => {
+    const wrapper = createNode("div");
+    wrapper.className = "contentWrapper";
+
+    const speakUp = createNode("p");
+    speakUp.textContent = "Can you speak up a little?";
+
+    wrapper.appendChild(speakUp);
+    wrapper.appendChild(wavesQuiet());
+    return wrapper;
+});
+
 const renderQuack: () => HTMLElement = once(() => {
     const quack = createNode("span");
     quack.textContent = "Quack!";
     return quack;
-})
+});
 
 export default function showDuck(): HTMLElement {
     if (document.querySelectorAll(".quack-overflow-svgDuck").length > 0) {
@@ -151,7 +163,9 @@ export default function showDuck(): HTMLElement {
         popup.set(renderAskTheDuck(
             () => popup.set(renderListening(true)),
             () => popup.set(renderListening(false)),
-            () => { }));
+            () => setTimeout(() => {
+                popup.set(renderSpeakUp());
+            }, 5000)));
 
         svgDuck.removeEventListener("click", clickHandler);
     };

@@ -1,5 +1,5 @@
 import once from "./once";
-import { createNode, appendTo } from "./domHelpers";
+import { createNode, appendTo, createWrapper } from "./domHelpers";
 import { browser } from "webextension-polyfill-ts";
 import { waves, wavesQuiet } from "./waves";
 
@@ -35,8 +35,7 @@ const renderCanIHelp: () => HTMLElement = once(() => {
 });
 
 const renderAskTheDuck = (yes: () => void, no: () => void, done: () => void): HTMLElement => {
-    const wrapper = createNode("div");
-    wrapper.className = "contentWrapper";
+    const wrapper = createWrapper();
 
     const header = createNode("h2");
     header.textContent = "Ask the duck!";
@@ -64,8 +63,7 @@ const renderAskTheDuck = (yes: () => void, no: () => void, done: () => void): HT
 
 const renderListening: (microphone?: boolean) => HTMLElement = (() => {
     const yesMic = () => {
-        const wrapper = createNode("div");
-        wrapper.className = "contentWrapper";
+        const wrapper = createWrapper();
 
         const listening = createNode("p");
         listening.textContent = "Quack Overflow is listening...";
@@ -80,8 +78,7 @@ const renderListening: (microphone?: boolean) => HTMLElement = (() => {
     };
 
     const noMic = () => {
-        const wrapper = createNode("div");
-        wrapper.className = "contentWrapper";
+        const wrapper = createWrapper();
 
         const listening = createNode("p");
         listening.textContent = "Quack Overflow is listening...";
@@ -98,8 +95,7 @@ const renderListening: (microphone?: boolean) => HTMLElement = (() => {
     };
 
     const unspecified = () => {
-        const wrapper = createNode("div");
-        wrapper.className = "contentWrapper";
+        const wrapper = createWrapper();
 
         const listening = createNode("p");
         listening.textContent = "Quack Overflow is listening...";
@@ -119,8 +115,7 @@ const renderListening: (microphone?: boolean) => HTMLElement = (() => {
 })();
 
 const renderSpeakUp: () => HTMLElement = once(() => {
-    const wrapper = createNode("div");
-    wrapper.className = "contentWrapper";
+    const wrapper = createWrapper();
 
     const speakUp = createNode("p");
     speakUp.textContent = "Can you speak up a little?";
@@ -130,11 +125,39 @@ const renderSpeakUp: () => HTMLElement = once(() => {
     return wrapper;
 });
 
+const renderThinking = () => {
+    const wrapper = createWrapper();
+
+    const ring = createNode("strong");
+    ring.className = "quack-loading";
+    ring.innerHTML = `
+    <div class="ring ring01"></div>
+    <div class="ring ring02"></div>
+    <div class="ring ring03"></div>
+    <div class="ring ring04"></div>
+    <div class="loading-center"></div>`;
+
+    wrapper.appendChild(ring);
+    return wrapper;
+}
+
 const renderQuack: () => HTMLElement = once(() => {
     const quack = createNode("span");
     quack.textContent = "Quack!";
     return quack;
 });
+
+const continueToSpeakUp = () => setTimeout(() => {
+    popup.set(renderSpeakUp());
+
+    setTimeout(() => {
+        popup.set(renderListening());
+
+        setTimeout(() => {
+            popup.set(renderThinking());
+        }, 2000); // The duck is thinking...
+    }, 2000)    // Can you speak up a little?
+}, 2000);     // Quack Overflow is listening...
 
 export default function showDuck(): HTMLElement {
     if (document.querySelectorAll(".quack-overflow-svgDuck").length > 0) {
@@ -163,9 +186,7 @@ export default function showDuck(): HTMLElement {
         popup.set(renderAskTheDuck(
             () => popup.set(renderListening(true)),
             () => popup.set(renderListening(false)),
-            () => setTimeout(() => {
-                popup.set(renderSpeakUp());
-            }, 5000)));
+            continueToSpeakUp));
 
         svgDuck.removeEventListener("click", clickHandler);
     };

@@ -85,6 +85,74 @@
     padding: 12px;
 }
 
+.quack-overflow-popup .quack-loading {
+    display: block;
+    height: 70px;
+    margin: 0 auto;
+    position: relative;
+    text-align: center;
+    width: 70px;
+}
+
+.quack-overflow-popup div.ring {
+    animation: wave 1.2s infinite linear;
+    border-radius: 50%;
+    display: block;
+    position: absolute;
+}
+
+.quack-overflow-popup div.ring01 {
+    animation-delay: 0;
+    background-color: rgba(201,29,46,0.15);
+    bottom: -5%;
+    left: -6%;
+    right: -2%;
+    top: -7%;
+    transform-origin: 46% 53%;
+}
+
+.quack-overflow-popup div.ring02 {
+    animation-delay: -1s;
+    background-color: rgba(242,114,12,0.5);
+    bottom: -2%;
+    left: -4%;
+    right: -4%;
+    top: -9%;
+    transform-origin: 47% 50%;
+}
+
+.quack-overflow-popup div.ring03 {
+    animation-delay: -1.5s;
+    background-color: rgba(255,255,25,0.25);
+    bottom: -5%;
+    left: -8%;
+    right: -4%;
+    top: -6%;
+    transform-origin: 49% 53%;
+}
+
+.quack-overflow-popup div.ring04 {
+    animation-delay: -2s;
+    background-color: rgba(76,141,189,0.25);
+    bottom: -3%;
+    left: -5%;
+    right: -6%;
+    top: -9%;
+    transform-origin: 47% 52%;
+}
+
+.quack-overflow-popup div.loading-center {
+    background: #fcfffc;
+    border-radius: 50%;
+    height: 74px;
+    left: 50%;
+    margin-left: -37px;
+    margin-top: -37px;
+    position: absolute;
+    top: 50%;
+    width: 74px;
+}
+
 .quack-overflow-popup div.buttonWrapper {
     text-align: center;
 }

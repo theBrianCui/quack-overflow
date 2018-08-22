@@ -8,6 +8,7 @@ function createVideo(): HTMLMediaElement {
     video.setAttribute("loop", "true");
     video.setAttribute("preload", "auto");
     video.setAttribute("width", "230");
+    video.style.maxHeight = "33px";
     return video;
 }
 
